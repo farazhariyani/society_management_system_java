@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">249</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">249</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">249</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/first_report.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.firstreport</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="pFlatID" id="250">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">5</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="248">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">sun.jdbc.odbc.JdbcOdbcDriver</property>
+            <property name="odaURL">jdbc:odbc:mypro</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FlatDataSet" id="249">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">OWNER_ID</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">OWNER_ID</text-property>
+                    <text-property name="heading">OWNER_ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FLAT_ROWHOUSE_NO</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">FLAT_ROWHOUSE_NO</text-property>
+                    <text-property name="heading">FLAT_ROWHOUSE_NO</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UNIT_TYPE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">UNIT_TYPE</text-property>
+                    <text-property name="heading">UNIT_TYPE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">UNIT_SIZE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">UNIT_SIZE</text-property>
+                    <text-property name="heading">UNIT_SIZE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TERRACE_SIZE</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TERRACE_SIZE</text-property>
+                    <text-property name="heading">TERRACE_SIZE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">USAGE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">USAGE</text-property>
+                    <text-property name="heading">USAGE</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CURRENT_STATUS</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">CURRENT_STATUS</text-property>
+                    <text-property name="heading">CURRENT_STATUS</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">OWNER_ID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">FLAT_ROWHOUSE_NO</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">UNIT_TYPE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">UNIT_SIZE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TERRACE_SIZE</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">USAGE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">CURRENT_STATUS</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">OWNER_ID</property>
+                    <property name="nativeName">OWNER_ID</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">FLAT_ROWHOUSE_NO</property>
+                    <property name="nativeName">FLAT_ROWHOUSE_NO</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">UNIT_TYPE</property>
+                    <property name="nativeName">UNIT_TYPE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">UNIT_SIZE</property>
+                    <property name="nativeName">UNIT_SIZE</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TERRACE_SIZE</property>
+                    <property name="nativeName">TERRACE_SIZE</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">USAGE</property>
+                    <property name="nativeName">USAGE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">CURRENT_STATUS</property>
+                    <property name="nativeName">CURRENT_STATUS</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select *
+from FLAT ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>OWNER_ID</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>OWNER_ID</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>OWNER_ID</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>FLAT_ROWHOUSE_NO</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>FLAT_ROWHOUSE_NO</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>FLAT_ROWHOUSE_NO</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>UNIT_TYPE</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>UNIT_TYPE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>UNIT_TYPE</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>UNIT_SIZE</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>UNIT_SIZE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>UNIT_SIZE</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>TERRACE_SIZE</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>TERRACE_SIZE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>TERRACE_SIZE</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>USAGE</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>USAGE</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>USAGE</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>CURRENT_STATUS</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>CURRENT_STATUS</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>CURRENT_STATUS</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="110">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="246">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="247">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="245">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">x-large</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Flat Details</text-property>
+        </label>
+        <table id="338">
+            <property name="dataSet">FlatDataSet</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">OWNER_ID</property>
+                    <text-property name="displayName">OWNER_ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["OWNER_ID"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">FLAT_ROWHOUSE_NO</property>
+                    <text-property name="displayName">FLAT_ROWHOUSE_NO</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FLAT_ROWHOUSE_NO"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">UNIT_TYPE</property>
+                    <text-property name="displayName">UNIT_TYPE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["UNIT_TYPE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">UNIT_SIZE</property>
+                    <text-property name="displayName">UNIT_SIZE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["UNIT_SIZE"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TERRACE_SIZE</property>
+                    <text-property name="displayName">TERRACE_SIZE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TERRACE_SIZE"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">USAGE</property>
+                    <text-property name="displayName">USAGE</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["USAGE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CURRENT_STATUS</property>
+                    <text-property name="displayName">CURRENT_STATUS</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CURRENT_STATUS"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="377"/>
+            <column id="378"/>
+            <column id="379"/>
+            <column id="380"/>
+            <column id="381"/>
+            <column id="382"/>
+            <column id="383"/>
+            <header>
+                <row id="339">
+                    <cell id="340">
+                        <label id="341">
+                            <text-property name="text">OWNER_ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="342">
+                        <label id="343">
+                            <text-property name="text">FLAT_ROWHOUSE_NO</text-property>
+                        </label>
+                    </cell>
+                    <cell id="344">
+                        <label id="345">
+                            <text-property name="text">UNIT_TYPE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="346">
+                        <label id="347">
+                            <text-property name="text">UNIT_SIZE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="348">
+                        <label id="349">
+                            <text-property name="text">TERRACE_SIZE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="350">
+                        <label id="351">
+                            <text-property name="text">USAGE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="352">
+                        <label id="353">
+                            <text-property name="text">CURRENT_STATUS</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="354">
+                    <cell id="355">
+                        <data id="356">
+                            <property name="resultSetColumn">OWNER_ID</property>
+                        </data>
+                    </cell>
+                    <cell id="357">
+                        <data id="358">
+                            <property name="resultSetColumn">FLAT_ROWHOUSE_NO</property>
+                        </data>
+                    </cell>
+                    <cell id="359">
+                        <data id="360">
+                            <property name="resultSetColumn">UNIT_TYPE</property>
+                        </data>
+                    </cell>
+                    <cell id="361">
+                        <data id="362">
+                            <property name="resultSetColumn">UNIT_SIZE</property>
+                        </data>
+                    </cell>
+                    <cell id="363">
+                        <data id="364">
+                            <property name="resultSetColumn">TERRACE_SIZE</property>
+                        </data>
+                    </cell>
+                    <cell id="365">
+                        <data id="366">
+                            <property name="resultSetColumn">USAGE</property>
+                        </data>
+                    </cell>
+                    <cell id="367">
+                        <data id="368">
+                            <property name="resultSetColumn">CURRENT_STATUS</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="369">
+                    <cell id="370"/>
+                    <cell id="371"/>
+                    <cell id="372"/>
+                    <cell id="373"/>
+                    <cell id="374"/>
+                    <cell id="375"/>
+                    <cell id="376"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

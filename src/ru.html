@@ -1,0 +1,534 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<HTML lang="en">
+	<HEAD>
+		<TITLE>PARAMETER SELECTION PAGE</TITLE>
+		<BASE href="http://127.0.0.1:64761/viewer/webcontent/birt" >
+		
+		<!-- Mimics Internet Explorer 7, it just works on IE8. -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+		<LINK REL="stylesheet" HREF="birt/styles/style.css" TYPE="text/css">
+		
+		<LINK REL="stylesheet" HREF="birt/styles/dialogbase.css" MEDIA="screen" TYPE="text/css"/>	
+					
+
+		<script type="text/javascript">
+			
+			var soapURL = document.location.href;
+			
+			var rtl = false;
+		</script>
+		
+		<SCRIPT SRC="birt/ajax/utility/Debug.js" type="text/javascript"></script>
+		<script src="birt/ajax/lib/prototype.js" type="text/javascript"></script>
+		<script src="birt/ajax/lib/head.js" type="text/javascript"></script>
+		
+		<script type="text/javascript">	
+			null
+		</script>
+		
+		<!-- Mask -->
+		<script src="birt/ajax/core/Mask.js" type="text/javascript"></script>
+		<script src="birt/ajax/utility/BrowserUtility.js" type="text/javascript"></script>
+		
+		<!-- Drag and Drop -->
+		<script src="birt/ajax/core/BirtDndManager.js" type="text/javascript"></script>
+		
+		<script src="birt/ajax/utility/Constants.js" type="text/javascript"></script>
+		<script src="birt/ajax/utility/BirtUtility.js" type="text/javascript"></script>
+		
+		<script src="birt/ajax/core/BirtEventDispatcher.js" type="text/javascript"></script>
+		<script src="birt/ajax/core/BirtEvent.js" type="text/javascript"></script>
+		
+		<script src="birt/ajax/mh/BirtBaseResponseHandler.js" type="text/javascript"></script>
+		<script src="birt/ajax/mh/BirtGetUpdatedObjectsResponseHandler.js" type="text/javascript"></script>
+
+		<script src="birt/ajax/ui/app/AbstractUIComponent.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/app/BirtProgressBar.js" type="text/javascript"></script>
+
+ 		<script src="birt/ajax/ui/report/AbstractReportComponent.js" type="text/javascript"></script>
+ 		<script src="birt/ajax/ui/report/AbstractBaseReportDocument.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/report/BirtReportDocument.js" type="text/javascript"></script>
+
+		<script src="birt/ajax/ui/dialog/AbstractBaseDialog.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/dialog/AbstractParameterDialog.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/dialog/BirtParameterDialog.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/dialog/AbstractExceptionDialog.js" type="text/javascript"></script>
+		<script src="birt/ajax/ui/dialog/BirtExceptionDialog.js" type="text/javascript"></script>
+		
+		<SCRIPT SRC="birt/ajax/utility/BirtPosition.js" type="text/javascript"></script>
+
+		<SCRIPT SRC="birt/ajax/core/BirtCommunicationManager.js" type="text/javascript"></script>
+		<SCRIPT SRC="birt/ajax/core/BirtSoapRequest.js" type="text/javascript"></script>
+		<SCRIPT SRC="birt/ajax/core/BirtSoapResponse.js" type="text/javascript"></script>
+				
+	</HEAD>
+
+	<BODY CLASS="BirtViewer_Body" onload="Javascript:init()" SCROLL="no" LEFTMARGIN='0px' STYLE='overflow:hidden'>
+		
+		<!-- Header section -->
+		<TABLE ID='layout' CELLSPACING='0' CELLPADDING='0' STYLE='width:100%;height:100%'>
+		
+
+
+
+
+
+
+ 
+
+<TR VALIGN='top'>
+	<TD>
+		<DIV ID="Document" CLASS="birtviewer_document_fragment">
+		</DIV>		
+		
+
+
+
+
+
+
+
+
+<DIV ID="progressBar" STYLE="display:none;position:absolute;z-index:310">
+	<TABLE WIDTH="250px" CLASS="birtviewer_progressbar" CELLSPACING="10px">
+		<TR>
+			<TD ALIGN="center">
+				<B>
+					Processing, please wait ...
+				</B>
+			</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center">
+				<IMG SRC="birt/images/Loading.gif" ALT="Progress Bar Image"/>
+			</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center">
+				<DIV ID="cancelTaskButton" STYLE="display:none">
+					<TABLE WIDTH="100%">
+						<TR>
+							<TD ALIGN="center">
+								<INPUT TYPE="BUTTON" VALUE="Cancel" 					   
+									   TITLE="Cancel"
+									   CLASS="birtviewer_progressbar_button"/>
+							</TD>
+						</TR>
+					</TABLE>
+				</DIV>
+			</TD>
+		</TR>	
+		<INPUT TYPE="HIDDEN" ID="taskid" VALUE=""/>
+	</TABLE>
+</DIV>
+
+
+
+
+
+
+
+
+
+<div id="parameterDialog" class="dialogBorder" style="display:none;position:absolute;z-index:220">
+	<iframe id="parameterDialogiframe"  name="parameterDialogiframe" style="z-index:-1; display: none; left:0px; top:0px;
+					 background-color: #ff0000; opacity: .0; filter: alpha(opacity = 0); position: absolute;" frameBorder="0" scrolling="no" src="birt/pages/common/blank.html">
+	</iframe>	
+	<div id="parameterDialogdialogTitleBar" class="dialogTitleBar dTitleBar">
+		<div class="dTitleTextContainer">
+			<table style="width: 100%; height: 100%;">
+				<tr>
+					<td class="dialogTitleText dTitleText">
+						Parameter
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="dialogCloseBtnContainer dCloseBtnContainer">
+			<table style="width: 100%; height: 100%; border-collapse: collapse">
+				<tr>
+					<td>
+						<label class="birtviewer_hidden_label" for="parameterDialogdialogCloseBtn">
+							Close
+						</label>						
+						<div id="parameterDialogdialogCloseBtn" class="dialogCloseBtn dCloseBtn"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- overflow is set as workaround for Mozilla bug https://bugzilla.mozilla.org/show_bug.cgi?id=167801 -->		
+	<div  class="dialogBackground" style="overflow: auto;"> 
+		<div class="dBackground">
+			<div class="dialogContentContainer" id="parameterDialogdialogContentContainer">
+				
+
+
+
+
+
+
+
+
+<DIV CLASS="birtviewer_parameter_dialog">
+	<TABLE CELLSPACING="2" CELLPADDING="2" ID="parameter_table" CLASS="birtviewer_dialog_body">
+		<TR VALIGN="top">
+			<TD>
+				<TABLE STYLE="font-size:8pt">
+					<TR HEIGHT="5px"><TD></TD></TR>
+					
+						<TR><TD COLSPAN="2">Parameters marked with <FONT COLOR="red">*</FONT> are required.</TD></TR>
+					
+
+
+
+
+
+
+
+
+
+<TR>
+	<TD NOWRAP>
+		<IMG SRC="birt/images/parameter.gif" ALT="pFlatID" TITLE=""/>
+	</TD>
+	<TD NOWRAP>
+		<FONT TITLE=""><LABEL FOR="pFlatID">pFlatID:</LABEL></FONT>
+		
+		
+			<FONT COLOR="red"><LABEL FOR="pFlatID">*</LABEL></FONT>
+		
+	</TD>
+</TR>
+<TR>
+	<TD NOWRAP></TD>
+	<TD NOWRAP WIDTH="100%">
+	<INPUT TYPE="HIDDEN" ID="control_type" VALUE="text">
+	<INPUT TYPE="HIDDEN" ID="data_type" VALUE="1">
+	
+		<INPUT CLASS="BirtViewer_parameter_dialog_Input"
+			TYPE="TEXT"
+			NAME="pFlatID"
+			ID="pFlatID" 
+			TITLE=""
+			VALUE="5" 
+			
+			aria-required='true'
+            >
+
+		<INPUT TYPE="HIDDEN"
+			ID="pFlatID_value"
+			VALUE="5"
+			>
+		
+		<INPUT TYPE="HIDDEN"
+			ID="pFlatID_displayText"
+			VALUE="5"
+			>
+
+
+		<INPUT TYPE="HIDDEN" ID="isRequired" 
+			VALUE = "true">
+	</TD>
+</TR>
+					<TR HEIGHT="5px"><TD></TD></TR>
+				</TABLE>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<DIV id="birt_hint" style="font-size:12px;color:#000000;display:none;position:absolute; z-index:300;background-color: #F7F7F7; layer-background-color: #0099FF; border: 1px #000000 solid;filter:Alpha(style=0,opacity=80,finishOpacity=100);">
+				</DIV>		
+			</TD>
+		</TR>
+		
+	</TABLE>	
+</DIV>
+			</div>
+			<div class="dialogBtnBarContainer">
+				<div>
+					<div class="dBtnBarDividerTop">
+					</div>
+					<div class="dBtnBarDividerBottom">
+					</div>
+				</div>
+				<div class="dialogBtnBar">
+					<div id="parameterDialogdialogCustomButtonContainer" class="dialogBtnBarButtonContainer">
+						<div id="parameterDialogokButton">
+							<div id="parameterDialogokButtonLeft" class="dialogBtnBarButtonLeftBackgroundEnabled"></div>
+							<div id="parameterDialogokButtonRight" class="dialogBtnBarButtonRightBackgroundEnabled"></div>
+							<input type="button" value="OK" 
+								title="OK"  
+								class="dialogBtnBarButtonText dialogBtnBarButtonEnabled"/>
+						</div>
+						<div class="dialogBtnBarDivider"></div>
+						<div id="parameterDialogcancelButton">
+							<div class="dialogBtnBarButtonLeftBackgroundEnabled"></div>
+							<div class="dialogBtnBarButtonRightBackgroundEnabled"></div>
+							<input type="button" value="Cancel" 
+								title="Cancel"  
+								class="dialogBtnBarButtonText dialogBtnBarButtonEnabled"/>
+						</div> 
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="exceptionDialog" class="dialogBorder" style="display:none;position:absolute;z-index:220">
+	<iframe id="exceptionDialogiframe"  name="exceptionDialogiframe" style="z-index:-1; display: none; left:0px; top:0px;
+					 background-color: #ff0000; opacity: .0; filter: alpha(opacity = 0); position: absolute;" frameBorder="0" scrolling="no" src="birt/pages/common/blank.html">
+	</iframe>	
+	<div id="exceptionDialogdialogTitleBar" class="dialogTitleBar dTitleBar">
+		<div class="dTitleTextContainer">
+			<table style="width: 100%; height: 100%;">
+				<tr>
+					<td class="dialogTitleText dTitleText">
+						Exception
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="dialogCloseBtnContainer dCloseBtnContainer">
+			<table style="width: 100%; height: 100%; border-collapse: collapse">
+				<tr>
+					<td>
+						<label class="birtviewer_hidden_label" for="exceptionDialogdialogCloseBtn">
+							Close
+						</label>						
+						<div id="exceptionDialogdialogCloseBtn" class="dialogCloseBtn dCloseBtn"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<!-- overflow is set as workaround for Mozilla bug https://bugzilla.mozilla.org/show_bug.cgi?id=167801 -->		
+	<div  class="dialogBackground" style="overflow: auto;"> 
+		<div class="dBackground">
+			<div class="dialogContentContainer" id="exceptionDialogdialogContentContainer">
+				
+
+
+
+
+
+
+
+
+<TABLE CELLSPACING="2" CELLPADDING="2" CLASS="birtviewer_dialog_body">
+	<TR>
+		<TD CLASS="birtviewer_exception_dialog">
+			<TABLE CELLSPACING="2" CELLPADDING="2">
+				<TR>
+					<TD VALIGN="top"><IMG SRC="birt/images/Error.gif" /></TD>
+					
+					<TD>
+					
+						<TABLE CELLSPACING="2" CELLPADDING="4" CLASS="birtviewer_exception_dialog_container" >
+							<TR>
+								<TD>
+								<DIV ID="faultStringContainer" CLASS="birtviewer_exception_dialog_message">
+									<B><SPAN ID='faultstring'></SPAN><B>
+								</DIV>
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV ID="showTraceLabel" CLASS="birtviewer_exception_dialog_label">
+										Show Exception Stack Trace 
+									</DIV>																				
+									<DIV ID="hideTraceLabel" CLASS="birtviewer_exception_dialog_label" STYLE="display:none">
+										Hide Exception Stack Trace 
+									</DIV>									
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<DIV ID="exceptionTraceContainer" STYLE="display:none">
+										<TABLE WIDTH="100%">
+											<TR>
+												<TD>
+													Stack Trace:<BR>
+												</TD>
+											</TR>
+											<TR>
+												<TD>
+													<DIV CLASS="birtviewer_exception_dialog_detail">
+														<SPAN ID='faultdetail'></SPAN>
+													</DIV>
+												</TD>
+											</TR>											
+										</TABLE>
+									</DIV>
+								</TD>
+							</TR>	
+						</TABLE>
+					
+					</TD>
+					
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+</TABLE>
+			</div>
+			<div class="dialogBtnBarContainer">
+				<div>
+					<div class="dBtnBarDividerTop">
+					</div>
+					<div class="dBtnBarDividerBottom">
+					</div>
+				</div>
+				<div class="dialogBtnBar">
+					<div id="exceptionDialogdialogCustomButtonContainer" class="dialogBtnBarButtonContainer">
+						<div id="exceptionDialogokButton">
+							<div id="exceptionDialogokButtonLeft" class="dialogBtnBarButtonLeftBackgroundEnabled"></div>
+							<div id="exceptionDialogokButtonRight" class="dialogBtnBarButtonRightBackgroundEnabled"></div>
+							<input type="button" value="OK" 
+								title="OK"  
+								class="dialogBtnBarButtonText dialogBtnBarButtonEnabled"/>
+						</div>
+						<div class="dialogBtnBarDivider"></div>
+						<div id="exceptionDialogcancelButton">
+							<div class="dialogBtnBarButtonLeftBackgroundEnabled"></div>
+							<div class="dialogBtnBarButtonRightBackgroundEnabled"></div>
+							<input type="button" value="Cancel" 
+								title="Cancel"  
+								class="dialogBtnBarButtonText dialogBtnBarButtonEnabled"/>
+						</div> 
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	</TD>
+</TR>
+		</TABLE>
+		
+	</BODY>
+	
+	
+
+
+<script type="text/javascript">
+// <![CDATA[	
+	// Error msgs
+	Constants.error.invalidPageRange = 'Invalid page range';
+	Constants.error.parameterRequired = 'Value of required parameter [{0}] is not specified.';
+	Constants.error.parameterNotAllowBlank = 'The parameter \"{0}\" cannot be blank.';
+	Constants.error.parameterNotSelected = 'Please select value for parameter \"{0}\".';
+	Constants.error.invalidPageNumber = 'Please enter valid page number.';
+	Constants.error.invalidCopiesNumber = 'Please enter valid copies number.';
+	Constants.error.unknownError = 'Unknown error.';
+	Constants.error.generateReportFirst = 'Report document should be generated first.';
+	Constants.error.columnRequired = 'No column is selected, please select at least one column for export.';
+	Constants.error.printPreviewAlreadyOpen = 'A print preview window is already open.';
+	Constants.error.confirmCancelTask = 'Do you want to cancel current operation?';
+// ]]>
+</script>
+	
+	
+
+
+<script type="text/javascript">
+// <![CDATA[
+            
+    Constants.nullValue = '$${{((null))}}$$';
+    
+	// Request attributes
+	if ( !Constants.request )
+	{
+		Constants.request = {};
+	}
+	Constants.request.format = 'pdf';
+	Constants.request.rtl = false;
+	Constants.request.isDesigner = true;
+	Constants.request.servletPath = "/preview".substr(1);
+	
+	Constants.viewingSessionId = "20170307_234232_773";	
+// ]]>
+</script>
+	
+	
+	<script type="text/javascript">
+	// <![CDATA[
+		var hasSVGSupport = false;
+		var useVBMethod = false;
+		if ( navigator.mimeTypes != null && navigator.mimeTypes.length > 0 )
+		{
+		    if ( navigator.mimeTypes["image/svg+xml"] != null )
+		    {
+		        hasSVGSupport = true;
+		    }
+		}
+		else
+		{
+		    useVBMethod = true;
+		}
+		
+	// ]]>
+	</script>
+	
+	<SCRIPT TYPE="text/vbscript">
+		On Error Resume Next
+		If useVBMethod = true Then
+		    hasSVGSupport = IsObject(CreateObject("Adobe.SVGCtl"))
+		End If
+	</SCRIPT>
+
+	<SCRIPT TYPE="text/javascript">		
+		var Mask =  new Mask( false );
+		var BrowserUtility = new BrowserUtility( );
+		var DragDrop = new BirtDndManager( );
+
+		var birtProgressBar = new BirtProgressBar( 'progressBar' );
+		var birtReportDocument = new BirtReportDocument( "Document" );
+
+		var parameterMode;
+		if ( Constants.request.servletPath == Constants.SERVLET_PARAMETER )
+		{
+			parameterMode = Constants.SERVLET_PARAMETER;
+		}
+		else
+		{
+			parameterMode = Constants.SERVLET_PREVIEW;
+		}
+		
+		var birtParameterDialog = new BirtParameterDialog( 'parameterDialog', parameterMode );
+		var birtExceptionDialog = new BirtExceptionDialog( 'exceptionDialog' );
+		
+		function init( )
+		{					
+			soapURL = birtUtility.initSessionId( soapURL );
+			birtParameterDialog.__cb_bind( );
+		}
+		
+	</SCRIPT>
+</HTML>
+
