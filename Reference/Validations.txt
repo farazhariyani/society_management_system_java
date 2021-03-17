@@ -1,0 +1,61 @@
+Number Validations
+
+textfield.addKeyListener(new KeyAdapter() 
+{ 
+public void keyTyped(KeyEvent ke) 
+{ 
+char c = e.getKeyChar(); 
+if((!(Character.isDigit(c))) && (c!='\b')) // Only digits ,backspace 
+{ 
+e.consume(); 
+} 
+}
+});
+
+Alphabet Validation
+
+char c=e.getKeyChar();
+if(!(Character.isAlphabetic(c) ||  (c==KeyEvent.VK_BACK_SPACE)||  c==KeyEvent.VK_DELETE ))
+        e.consume();
+
+All Caps Text
+
+char keyChar = e.getKeyChar();
+    if (Character.isLowerCase(keyChar)) {
+      e.setKeyChar(Character.toUpperCase(keyChar));
+    }
+
+Phone Number Validation
+
+char c=e.getKeyChar();
+	String number=omobile.getText();
+	Pattern pattern = Pattern.compile("\\d{10}");
+	      Matcher matcher = pattern.matcher(number);
+	      if (matcher.matches()) {
+	    	  e.consume();
+	    	  //System.out.println("Phone Number Valid");
+	      }
+	      else
+	      {
+	  //System.out.println("Phone Number must be in the form XXXXXXXXXX");
+	      }
+   if((Character.isAlphabetic(c) ||  (c==KeyEvent.VK_BACK_SPACE)||  c==KeyEvent.VK_DELETE ))
+	  {
+  	omobile.setText(null);
+	      }
+
+Email id validation
+
+public boolean isValidEmailAddress(String email) {
+String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+           java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+           java.util.regex.Matcher m = p.matcher(email);
+           return m.matches();
+    }
+
+if(!isValidEmailAddress(fmemid.getText()))
+ {
+	fmemid.setText(null);
+	 }
+
+

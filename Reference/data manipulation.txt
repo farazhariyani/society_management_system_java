@@ -1,0 +1,94 @@
+for save
+
+public static void dosave(String s1, String s2, String s3, String s4,
+			String s5, String s6, String s7, String s8) {
+		Connection con = null;
+		try {
+
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			System.out.println("\n\tDriver is loaded\n");
+
+			con = DriverManager.getConnection("Jdbc:Odbc:Vehicle");
+			System.out.println("\n\tConnection is done\n");
+
+			Statement st = con.createStatement();
+			
+			if (validateInput()) {
+				String sss = "insert into Customer values(" + s1 + ",'" + s2
+						+ "','" + s3 + "','" + s4 + "','" + s5 + "','" + s6
+						+ "','" + s7 + "','" + s8 + "')";
+				int y = st.executeUpdate(sss);
+				if (y == 0)
+					JOptionPane.showMessageDialog(null, "Record is not saved",
+							"Save Messege", JOptionPane.INFORMATION_MESSAGE);
+				else
+					JOptionPane.showMessageDialog(null, "Record is saved",
+							"Save Messege", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}// try ends
+		catch (Exception ee) {
+			ee.printStackTrace();
+		}// catch ends
+		finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+for update
+public static void doupdate(String s1, String s2, String s3, String s4,
+			String s5, String s6, String s7, String s8) {
+		Connection con = null;
+		try {
+
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			System.out.println("\n\tDriver is loaded\n");
+
+			con = DriverManager.getConnection("Jdbc:Odbc:Vehicle");
+			System.out.println("\n\tConnection is done\n");
+
+			Statement st = con.createStatement();
+			String sss = "update  Customer set  custname= '" + s2
+					+ "',  cMobile= '" + s3 + "', c_phone= '" + s4
+					+ "', caddress = '" + s5 + "', c_email = '" + s6
+					+ "', c_fax = '" + s7 + "',gender = '" + s8
+					+ "'  where custid= " + Integer.parseInt(s1);
+			int y = st.executeUpdate(sss);
+			if (y == 0)
+				JOptionPane.showMessageDialog(null, "Record is not Updated",
+						"Update Messege", JOptionPane.INFORMATION_MESSAGE);
+			else
+				JOptionPane.showMessageDialog(null, "Record is Updated",
+						"Update Messege", JOptionPane.INFORMATION_MESSAGE);
+
+		}// try ends
+		catch (Exception ee) {
+			ee.printStackTrace();
+		}// catch ends 
+
+
+for delete
+public static void dodelete(String s1) {
+		try {
+
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			System.out.println("\n\tDriver is loaded\n");
+
+			Connection con = DriverManager.getConnection("Jdbc:Odbc:Vehicle");
+			System.out.println("\n\tConnection is done\n");
+
+			Statement st = con.createStatement();
+			String sss = "delete from Customer  where custid= "
+					+ Integer.parseInt(s1);
+			int y = st.executeUpdate(sss);
+			if (y == 0)
+				JOptionPane.showMessageDialog(null, "Record is not Deleted",
+						"Delete Messege", JOptionPane.INFORMATION_MESSAGE);
+			else
+				JOptionPane.showMessageDialog(null, "Record is Deleted",
+						"Delete Messege", JOptionPane.INFORMATION_MESSAGE);
+

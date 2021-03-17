@@ -1,0 +1,70 @@
+JFrame f=new JFrame();
+
+        Vector columnNames = new Vector();
+
+Vector data = new Vector();
+
+
+try {
+
+Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+
+Connection connect =DriverManager.getConnection("jdbc:odbc:dsms");
+
+
+String sql = "Select p_code,name from PRODUCT";
+
+Statement stmt = connect.createStatement();
+
+ResultSet rs = stmt.executeQuery( sql );
+
+ResultSetMetaData md = rs.getMetaData();
+
+int columns = md.getColumnCount();
+
+for (int i = 1; i <= columns; i++) {
+
+columnNames.addElement( md.getColumnName(i) );
+
+}
+
+while (rs.next()) {
+
+Vector row = new Vector(columns);
+
+for (int i = 1; i <= columns; i++) {
+
+row.addElement( rs.getObject(i) );
+
+}
+
+data.addElement( row );
+
+}
+
+rs.close();
+
+stmt.close();
+
+}
+
+catch(Exception e) {
+
+System.out.println( e );
+
+}
+
+JTable table = new JTable(data, columnNames);
+
+
+JScrollPane scrollPane = new JScrollPane( table );
+
+f.getContentPane().add( scrollPane );
+
+f.setVisible(true);
+
+f.setSize(1000,500);
+
+Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+f.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
